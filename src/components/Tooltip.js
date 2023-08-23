@@ -60,13 +60,13 @@ export const TooltipItem = ({
               }}
               className={` ${
                 (position === "right" &&
-                  `absolute left-full top-1/2 z-20 ml-3 -translate-y-1/2 whitespace-nowrap rounded  font-semibold  opacity-0 group-hover:opacity-100 group-focus:opacity-100`) ||
+                  `absolute left-full top-1/2 z-20 ml-3 -translate-y-1/2 whitespace-nowrap rounded  font-semibold  opacity-0 lg:group-hover:opacity-100 sm:group-focus:opacity-100`) ||
                 (position === "top" &&
-                  `absolute bottom-full left-1/2 z-20 mb-3 -translate-x-1/2 whitespace-nowrap rounded   font-semibold  opacity-0 group-hover:opacity-100 group-focus:opacity-100`) ||
+                  `absolute bottom-full left-1/2 z-20 mb-3 -translate-x-1/2 whitespace-nowrap rounded   font-semibold  opacity-0 lg:group-hover:opacity-100 sm:group-focus:opacity-100`) ||
                 (position === "left" &&
-                  `absolute right-full top-1/2 z-20 mr-3 -translate-y-1/2 whitespace-nowrap rounded   font-semibold  opacity-0 group-hover:opacity-100 group-focus:opacity-100`) ||
+                  `absolute right-full top-1/2 z-20 mr-3 -translate-y-1/2 whitespace-nowrap rounded   font-semibold  opacity-0 lg:group-hover:opacity-100 sm:group-focus:opacity-100`) ||
                 (position === "bottom" &&
-                  `absolute top-full left-1/2 z-20 mt-3 -translate-x-1/2 whitespace-nowrap rounded   font-semibold  opacity-0 group-hover:opacity-100 group-focus:opacity-100`)
+                  `absolute top-full left-1/2 z-20 mt-3 -translate-x-1/2 whitespace-nowrap rounded   font-semibold  opacity-0 lg:group-hover:opacity-100 sm:group-focus:opacity-100`)
               }`}
             >
               <span
