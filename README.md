@@ -1,3 +1,7 @@
+## Overview
+the application is built on NextJs and Tailwind Completely, it contains index.js, Tooltip.js, Modal.js. Tooltip.js is responsible for the rendering the tooltip and Modal.js is responsible for rendering the form aspect of the project.
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
