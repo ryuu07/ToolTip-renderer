@@ -35,7 +35,7 @@ const Modal = ({ isVisible, Close, ...props }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
-        <div className="lg:w-[643px] lg:h-[612px] md:w-[643px] md:h-[612px] sm:w-[443px] sm:h-[812px] flex flex-col px-2">
+        <div className="lg:w-[643px] lg:h-[612px] md:w-[643px] md:h-[612px] sm:w-[443px] sm:h-[800px] flex flex-col px-2">
           <button
             className="text-white text-xl lg:place-self-end sm:place-self-center"
             onClick={() => {

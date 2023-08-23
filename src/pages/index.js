@@ -31,7 +31,8 @@ export default function Home(props) {
 
   return (
     <React.Fragment>
-      <div className="min-h-screen bg-slate-200 font-MainFont">
+      {/* changes */}
+      <div className="h-full min-h-screen bg-slate-200 font-MainFont">
         <div className=" flex flex-col justify-between min-h-screen p-2">
           <div className="flex flex-row justify-between ">
             {/* START OF 1ST BUTTON */}
@@ -41,7 +42,7 @@ export default function Home(props) {
                   ? parseInt(receivedData.tooltipWidth)
                   : prevButtonData.current["Button1"]
                   ? parseInt(prevButtonData.current["Button1"].tooltipWidth)
-                  : 110
+                  : 120
               }
               cornerRadius={
                 receivedData && receivedData.targetElement === "Button1"
@@ -84,7 +85,7 @@ export default function Home(props) {
                   ? receivedData.tooltipText
                   : prevButtonData.current["Button1"]
                   ? prevButtonData.current["Button1"].tooltipText
-                  : "Tooltip text goes here" //DEFAULT VALUE
+                  : "Tooltip text goes here " //DEFAULT VALUE
               }
               buttonId="Button1"
             >
@@ -107,7 +108,7 @@ export default function Home(props) {
                   ? parseInt(receivedData.tooltipWidth)
                   : prevButtonData.current["Button2"]
                   ? parseInt(prevButtonData.current["Button2"].tooltipWidth)
-                  : 110
+                  : 120
               }
               cornerRadius={
                 receivedData && receivedData.targetElement === "Button2"
@@ -172,7 +173,7 @@ export default function Home(props) {
                   ? parseInt(receivedData.tooltipWidth)
                   : prevButtonData.current["Button3"]
                   ? parseInt(prevButtonData.current["Button3"].tooltipWidth)
-                  : 110
+                  : 120
               }
               cornerRadius={
                 receivedData && receivedData.targetElement === "Button3"
@@ -237,7 +238,7 @@ export default function Home(props) {
                   ? parseInt(receivedData.tooltipWidth)
                   : prevButtonData.current["Button4"]
                   ? parseInt(prevButtonData.current["Button4"].tooltipWidth)
-                  : 110
+                  : 120
               }
               cornerRadius={
                 receivedData && receivedData.targetElement === "Button4"
@@ -300,7 +301,7 @@ export default function Home(props) {
                   ? parseInt(receivedData.tooltipWidth)
                   : prevButtonData.current["Button5"]
                   ? parseInt(prevButtonData.current["Button5"].tooltipWidth)
-                  : 110
+                  : 120
               }
               cornerRadius={
                 receivedData && receivedData.targetElement === "Button5"
