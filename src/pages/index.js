@@ -6,7 +6,13 @@ export default function Home(props) {
   const [showModal, setShowModal] = useState(false);
   const [selectedButton, setSelectedButton] = useState("");
   const [receivedData, setReceivedData] = useState(null);
-  const [toggled, setToggled] = useState(true);
+  const [textLength, setTextLength] = useState(0);
+  const defaultText = "Tooltip text goes here";
+
+  useEffect(() => {
+    setTextLength(defaultText.length * 5);
+  }, [defaultText]);
+
   //USING USEREF TO STORE THE PREVIOUS STATE OF THE TOOLTIP UPON CHANGING THE STATE OF ANOTHER BUTTON IF THER IS NO USEREF HERE ON CHANGING ANOTHER BUTTONS STATE IT WILL REVERT ALL THE OTHER BUTTONS TO DEFAULT STATE
 
   const prevButtonData = useRef({
@@ -37,13 +43,12 @@ export default function Home(props) {
           <div className="flex flex-row justify-between ">
             {/* START OF 1ST BUTTON */}
             <TooltipItem
-              toggleValue={toggled}
               tooltipWidth={
                 receivedData && receivedData.targetElement === "Button1"
                   ? parseInt(receivedData.tooltipWidth)
                   : prevButtonData.current["Button1"]
                   ? parseInt(prevButtonData.current["Button1"].tooltipWidth)
-                  : 120
+                  : textLength
               }
               cornerRadius={
                 receivedData && receivedData.targetElement === "Button1"
@@ -86,7 +91,7 @@ export default function Home(props) {
                   ? receivedData.tooltipText
                   : prevButtonData.current["Button1"]
                   ? prevButtonData.current["Button1"].tooltipText
-                  : "Tooltip text goes here " //DEFAULT VALUE
+                  : "Tooltip text goes here" //DEFAULT VALUE
               }
               buttonId="Button1"
             >
@@ -105,13 +110,12 @@ export default function Home(props) {
             {/* END OF 1ST BUTTON */}
 
             <TooltipItem
-              toggleValue={toggled}
               tooltipWidth={
                 receivedData && receivedData.targetElement === "Button2"
                   ? parseInt(receivedData.tooltipWidth)
                   : prevButtonData.current["Button2"]
                   ? parseInt(prevButtonData.current["Button2"].tooltipWidth)
-                  : 120
+                  : textLength
               }
               cornerRadius={
                 receivedData && receivedData.targetElement === "Button2"
@@ -172,13 +176,12 @@ export default function Home(props) {
           </div>{" "}
           <div className="flex flex-row justify-center">
             <TooltipItem
-              toggleValue={toggled}
               tooltipWidth={
                 receivedData && receivedData.targetElement === "Button3"
                   ? parseInt(receivedData.tooltipWidth)
                   : prevButtonData.current["Button3"]
                   ? parseInt(prevButtonData.current["Button3"].tooltipWidth)
-                  : 120
+                  : textLength
               }
               cornerRadius={
                 receivedData && receivedData.targetElement === "Button3"
@@ -239,13 +242,12 @@ export default function Home(props) {
           </div>{" "}
           <div className="flex flex-row justify-between ">
             <TooltipItem
-              toggleValue={toggled}
               tooltipWidth={
                 receivedData && receivedData.targetElement === "Button4"
                   ? parseInt(receivedData.tooltipWidth)
                   : prevButtonData.current["Button4"]
                   ? parseInt(prevButtonData.current["Button4"].tooltipWidth)
-                  : 120
+                  : textLength
               }
               cornerRadius={
                 receivedData && receivedData.targetElement === "Button4"
@@ -304,13 +306,12 @@ export default function Home(props) {
               </button>
             </TooltipItem>
             <TooltipItem
-              toggleValue={toggled}
               tooltipWidth={
                 receivedData && receivedData.targetElement === "Button5"
                   ? parseInt(receivedData.tooltipWidth)
                   : prevButtonData.current["Button5"]
                   ? parseInt(prevButtonData.current["Button5"].tooltipWidth)
-                  : 120
+                  : textLength
               }
               cornerRadius={
                 receivedData && receivedData.targetElement === "Button5"
@@ -377,7 +378,6 @@ export default function Home(props) {
         selectedButton={selectedButton}
         Close={() => {
           setShowModal(false);
-          setToggled(true);
         }}
         onSubmit={getData}
       />
