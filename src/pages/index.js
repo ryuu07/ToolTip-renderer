@@ -1,118 +1,374 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import React, { useState, useEffect, useRef } from "react";
+import TooltipItem from "@/components/Tooltip";
+import Modal from "@/components/Modal";
 
-const inter = Inter({ subsets: ['latin'] })
+export default function Home(props) {
+  const [showModal, setShowModal] = useState(false);
+  const [selectedButton, setSelectedButton] = useState("");
+  const [receivedData, setReceivedData] = useState(null);
 
-export default function Home() {
+  //USING USEREF TO STORE THE PREVIOUS STATE OF THE TOOLTIP UPON CHANGING THE STATE OF ANOTHER BUTTON IF THER IS NO USEREF HERE ON CHANGING ANOTHER BUTTONS STATE IT WILL REVERT ALL THE OTHER BUTTONS TO DEFAULT STATE
+
+  const prevButtonData = useRef({
+    Button1: null,
+    Button2: null,
+    Button3: null,
+    Button4: null,
+    Button5: null,
+  });
+
+  //GETTING THE DATA FROM THE MODAL JS FILE
+
+  const getData = (data) => {
+    setReceivedData(data);
+    console.log(receivedData);
+    if (data.targetElement) {
+      prevButtonData.current[data.targetElement] = data;
+    }
+  };
+
+  //EVERY BUTTON HAS THE SAME STRUCTURE SO YOU CAN VIEW ANY ONE BUTTON'S CODE TO UNDERSTAND WHATS GOING ON, EVERYWHERE YOU SEE PREVBUTTONDATA , IT MEANS USE REF IS IN ACTION
+
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/pages/index.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    <React.Fragment>
+      <div className="min-h-screen bg-slate-200 font-MainFont">
+        <div className=" flex flex-col justify-between min-h-screen p-2">
+          <div className="flex flex-row justify-between ">
+            {/* START OF 1ST BUTTON */}
+            <TooltipItem
+              tooltipWidth={
+                receivedData && receivedData.targetElement === "Button1"
+                  ? parseInt(receivedData.tooltipWidth)
+                  : prevButtonData.current["Button1"]
+                  ? parseInt(prevButtonData.current["Button1"].tooltipWidth)
+                  : 110
+              }
+              cornerRadius={
+                receivedData && receivedData.targetElement === "Button1"
+                  ? parseInt(receivedData.cornerRadius)
+                  : prevButtonData.current["Button1"]
+                  ? parseInt(prevButtonData.current["Button1"].cornerRadius)
+                  : 4
+              }
+              textSize={
+                receivedData && receivedData.targetElement === "Button1"
+                  ? parseInt(receivedData.textSize)
+                  : prevButtonData.current["Button1"]
+                  ? parseInt(prevButtonData.current["Button1"].textSize)
+                  : 10 //DEFAULT VALUE
+              }
+              padding={
+                receivedData && receivedData.targetElement === "Button1"
+                  ? parseInt(receivedData.padding)
+                  : prevButtonData.current["Button1"]
+                  ? parseInt(prevButtonData.current["Button1"].padding)
+                  : 8 //DEFAULT VALUE
+              }
+              textColour={
+                receivedData && receivedData.targetElement === "Button1"
+                  ? receivedData.textColour
+                  : prevButtonData.current["Button1"]
+                  ? prevButtonData.current["Button1"].textColour
+                  : "white" //DEFAULT VALUE
+              }
+              backgroundColour={
+                receivedData && receivedData.targetElement === "Button1"
+                  ? receivedData.backgroundColour
+                  : prevButtonData.current["Button1"]
+                  ? prevButtonData.current["Button1"].backgroundColour
+                  : "black" //DEFAULT VALUE
+              }
+              position="right"
+              tooltipsText={
+                receivedData && receivedData.targetElement === "Button1"
+                  ? receivedData.tooltipText
+                  : prevButtonData.current["Button1"]
+                  ? prevButtonData.current["Button1"].tooltipText
+                  : "Tooltip text goes here" //DEFAULT VALUE
+              }
+              buttonId="Button1"
+            >
+              <button
+                className="bg-white text-black rounded-md p-2 font-semibold w-36"
+                onClick={() => {
+                  setShowModal(true);
+                  setSelectedButton("Button1");
+                }}
+              >
+                Button 1
+              </button>
+            </TooltipItem>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+            {/* END OF 1ST BUTTON */}
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+            <TooltipItem
+              tooltipWidth={
+                receivedData && receivedData.targetElement === "Button2"
+                  ? parseInt(receivedData.tooltipWidth)
+                  : prevButtonData.current["Button2"]
+                  ? parseInt(prevButtonData.current["Button2"].tooltipWidth)
+                  : 110
+              }
+              cornerRadius={
+                receivedData && receivedData.targetElement === "Button2"
+                  ? parseInt(receivedData.cornerRadius)
+                  : prevButtonData.current["Button2"]
+                  ? parseInt(prevButtonData.current["Button2"].cornerRadius)
+                  : 4
+              }
+              textSize={
+                receivedData && receivedData.targetElement === "Button2"
+                  ? parseInt(receivedData.textSize)
+                  : prevButtonData.current["Button2"]
+                  ? parseInt(prevButtonData.current["Button2"].textSize)
+                  : 10
+              }
+              padding={
+                receivedData && receivedData.targetElement === "Button2"
+                  ? parseInt(receivedData.padding)
+                  : prevButtonData.current["Button2"]
+                  ? parseInt(prevButtonData.current["Button2"].padding)
+                  : 8 //DEFAULT VALUE
+              }
+              textColour={
+                receivedData && receivedData.targetElement === "Button2"
+                  ? receivedData.textColour
+                  : prevButtonData.current["Button2"]
+                  ? prevButtonData.current["Button2"].textColour
+                  : "white"
+              }
+              position="left"
+              backgroundColour={
+                receivedData && receivedData.targetElement === "Button2"
+                  ? receivedData.backgroundColour
+                  : prevButtonData.current["Button2"]
+                  ? prevButtonData.current["Button2"].backgroundColour
+                  : "black" //DEFAULT VALUE
+              }
+              tooltipsText={
+                receivedData && receivedData.targetElement === "Button2"
+                  ? receivedData.tooltipText
+                  : prevButtonData.current["Button2"]
+                  ? prevButtonData.current["Button2"].tooltipText
+                  : "Tooltip text goes here"
+              }
+              buttonId="Button2"
+            >
+              <button
+                className="bg-white text-black rounded-md p-2 font-semibold w-36"
+                onClick={() => {
+                  setShowModal(true);
+                  setSelectedButton("Button2");
+                }}
+              >
+                Button 2
+              </button>
+            </TooltipItem>
+          </div>{" "}
+          <div className="flex flex-row justify-center">
+            <TooltipItem
+              tooltipWidth={
+                receivedData && receivedData.targetElement === "Button3"
+                  ? parseInt(receivedData.tooltipWidth)
+                  : prevButtonData.current["Button3"]
+                  ? parseInt(prevButtonData.current["Button3"].tooltipWidth)
+                  : 110
+              }
+              cornerRadius={
+                receivedData && receivedData.targetElement === "Button3"
+                  ? parseInt(receivedData.cornerRadius)
+                  : prevButtonData.current["Button3"]
+                  ? parseInt(prevButtonData.current["Button3"].cornerRadius)
+                  : 4
+              }
+              textSize={
+                receivedData && receivedData.targetElement === "Button3"
+                  ? parseInt(receivedData.textSize)
+                  : prevButtonData.current["Button3"]
+                  ? parseInt(prevButtonData.current["Button3"].textSize)
+                  : 10
+              }
+              padding={
+                receivedData && receivedData.targetElement === "Button3"
+                  ? parseInt(receivedData.padding)
+                  : prevButtonData.current["Button3"]
+                  ? parseInt(prevButtonData.current["Button3"].padding)
+                  : 8 //DEFAULT VALUE
+              }
+              textColour={
+                receivedData && receivedData.targetElement === "Button3"
+                  ? receivedData.textColour
+                  : prevButtonData.current["Button3"]
+                  ? prevButtonData.current["Button3"].textColour
+                  : "white"
+              }
+              position="bottom"
+              backgroundColour={
+                receivedData && receivedData.targetElement === "Button3"
+                  ? receivedData.backgroundColour
+                  : prevButtonData.current["Button3"]
+                  ? prevButtonData.current["Button3"].backgroundColour
+                  : "black" //DEFAULT VALUE
+              }
+              tooltipsText={
+                receivedData && receivedData.targetElement === "Button3"
+                  ? receivedData.tooltipText
+                  : prevButtonData.current["Button3"]
+                  ? prevButtonData.current["Button3"].tooltipText
+                  : "Tooltip text goes here"
+              }
+              buttonId="Button3"
+            >
+              <button
+                className="bg-white text-black rounded-md p-2 font-semibold w-36"
+                onClick={() => {
+                  setShowModal(true);
+                  setSelectedButton("Button3");
+                }}
+              >
+                Button 3
+              </button>
+            </TooltipItem>
+          </div>{" "}
+          <div className="flex flex-row justify-between ">
+            <TooltipItem
+              tooltipWidth={
+                receivedData && receivedData.targetElement === "Button4"
+                  ? parseInt(receivedData.tooltipWidth)
+                  : prevButtonData.current["Button4"]
+                  ? parseInt(prevButtonData.current["Button4"].tooltipWidth)
+                  : 110
+              }
+              cornerRadius={
+                receivedData && receivedData.targetElement === "Button4"
+                  ? parseInt(receivedData.cornerRadius)
+                  : prevButtonData.current["Button4"]
+                  ? parseInt(prevButtonData.current["Button4"].cornerRadius)
+                  : 4
+              }
+              textSize={
+                receivedData && receivedData.targetElement === "Button4"
+                  ? parseInt(receivedData.textSize)
+                  : prevButtonData.current["Button4"]
+                  ? parseInt(prevButtonData.current["Button4"].textSize)
+                  : 10
+              }
+              padding={
+                receivedData && receivedData.targetElement === "Button4"
+                  ? parseInt(receivedData.padding)
+                  : prevButtonData.current["Button4"]
+                  ? parseInt(prevButtonData.current["Button4"].padding)
+                  : 8 //DEFAULT VALUE
+              }
+              textColour={
+                receivedData && receivedData.targetElement === "Button4"
+                  ? receivedData.textColour
+                  : prevButtonData.current["Button4"]
+                  ? prevButtonData.current["Button4"].textColour
+                  : "white"
+              }
+              position="top"
+              backgroundColour={
+                receivedData && receivedData.targetElement === "Button4"
+                  ? receivedData.backgroundColour
+                  : prevButtonData.current["Button4"]
+                  ? prevButtonData.current["Button4"].backgroundColour
+                  : "black" //DEFAULT VALUE
+              }
+              tooltipsText={
+                receivedData && receivedData.targetElement === "Button4"
+                  ? receivedData.tooltipText
+                  : prevButtonData.current["Button4"]
+                  ? prevButtonData.current["Button4"].tooltipText
+                  : "Tooltip text goes here"
+              }
+              buttonId="Button4"
+            >
+              <button
+                className="bg-white text-black rounded-md p-2 font-semibold w-36"
+                onClick={() => {
+                  setShowModal(true);
+                  setSelectedButton("Button4");
+                }}
+              >
+                Button 4
+              </button>
+            </TooltipItem>
+            <TooltipItem
+              tooltipWidth={
+                receivedData && receivedData.targetElement === "Button5"
+                  ? parseInt(receivedData.tooltipWidth)
+                  : prevButtonData.current["Button5"]
+                  ? parseInt(prevButtonData.current["Button5"].tooltipWidth)
+                  : 110
+              }
+              cornerRadius={
+                receivedData && receivedData.targetElement === "Button5"
+                  ? parseInt(receivedData.cornerRadius)
+                  : prevButtonData.current["Button5"]
+                  ? parseInt(prevButtonData.current["Button5"].cornerRadius)
+                  : 4
+              }
+              textSize={
+                receivedData && receivedData.targetElement === "Button5"
+                  ? parseInt(receivedData.textSize)
+                  : prevButtonData.current["Button5"]
+                  ? parseInt(prevButtonData.current["Button5"].textSize)
+                  : 10
+              }
+              padding={
+                receivedData && receivedData.targetElement === "Button5"
+                  ? parseInt(receivedData.padding)
+                  : prevButtonData.current["Button5"]
+                  ? parseInt(prevButtonData.current["Button5"].padding)
+                  : 8 //DEFAULT VALUE
+              }
+              textColour={
+                receivedData && receivedData.targetElement === "Button5"
+                  ? receivedData.textColour
+                  : prevButtonData.current["Button5"]
+                  ? prevButtonData.current["Button5"].textColour
+                  : "white"
+              }
+              position="top"
+              backgroundColour={
+                receivedData && receivedData.targetElement === "Button5"
+                  ? receivedData.backgroundColour
+                  : prevButtonData.current["Button5"]
+                  ? prevButtonData.current["Button5"].backgroundColour
+                  : "black" //DEFAULT VALUE
+              }
+              tooltipsText={
+                receivedData && receivedData.targetElement === "Button5"
+                  ? receivedData.tooltipText
+                  : prevButtonData.current["Button5"]
+                  ? prevButtonData.current["Button5"].tooltipText
+                  : "Tooltip text goes here"
+              }
+              buttonId="Button5"
+            >
+              <button
+                className="bg-white text-black rounded-md p-2 font-semibold w-36"
+                onClick={() => {
+                  setShowModal(true);
+                  setSelectedButton("Button5");
+                }}
+              >
+                Button 5
+              </button>
+            </TooltipItem>
+          </div>{" "}
+        </div>{" "}
+      </div>{" "}
+      {/* MODAL BEING CALLED HERE */}
+      <Modal
+        isVisible={showModal}
+        selectedButton={selectedButton}
+        Close={() => {
+          setShowModal(false);
+        }}
+        onSubmit={getData}
+      />
+    </React.Fragment>
+  );
 }
