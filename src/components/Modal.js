@@ -35,9 +35,9 @@ const Modal = ({ isVisible, Close, ...props }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
-        <div className="lg:w-[643px] lg:h-[612px] md:w-[643px] md:h-[612px] flex flex-col px-2 sm:w-[643px] sm:h-[612px]">
+        <div className="lg:w-[643px] lg:h-[612px] md:w-[643px] md:h-[612px] sm:w-[443px] sm:h-[812px] flex flex-col px-2">
           <button
-            className="text-white text-xl place-self-end"
+            className="text-white text-xl lg:place-self-end sm:place-self-center"
             onClick={() => {
               Close();
             }}
@@ -45,8 +45,8 @@ const Modal = ({ isVisible, Close, ...props }) => {
             {" "}
             X{" "}
           </button>{" "}
-          <div className="bg-gray-100 p-2 rounded h-auto">
-            <div className="p-4 gap-4 flex flex-col h-full justify-between font-MainFont text-[16px]">
+          <div className="bg-gray-100 p-2 rounded h-auto w-auto">
+            <div className="p-4 gap-4 flex flex-col h-full justify-between font-MainFont lg:text-[16px] md:text-[16px] sm:text-[16px]">
               <div>
                 <div className="flex flex-col">
                   <label htmlFor="" className="font-semibold pb-1">
@@ -86,7 +86,8 @@ const Modal = ({ isVisible, Close, ...props }) => {
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-full p-1.5  placeholder:text-gray-300"
                 />
               </div>
-              <div className="flex flex-row justify-between">
+              <div className="flex lg:flex-row md:flex-row justify-between sm:flex-col">
+                {/* changes */}
                 <div className="flex flex-col">
                   <label htmlFor="" className="font-semibold pb-1">
                     Text Size
@@ -98,7 +99,7 @@ const Modal = ({ isVisible, Close, ...props }) => {
                       setTextsize(event.target.value);
                     }}
                     type="number"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-52 p-1.5"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block lg:w-52 md:w-52 sm:w-full p-1.5"
                   />
                 </div>
                 <div className="flex flex-col">
@@ -112,7 +113,7 @@ const Modal = ({ isVisible, Close, ...props }) => {
                       setPadding(event.target.value);
                     }}
                     type="number"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-52 p-1.5"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block lg:w-52 md:w-52 sm:w-full p-1.5"
                   />
                 </div>
               </div>
@@ -144,7 +145,7 @@ const Modal = ({ isVisible, Close, ...props }) => {
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-full p-1.5  placeholder:text-gray-300"
                 />
               </div>
-              <div className="flex flex-row justify-between">
+              <div className="flex lg:flex-row md:flex-row sm:flex-col justify-between">
                 <div className="flex flex-col">
                   <label htmlFor="" className="font-semibold pb-1">
                     Corner radius
@@ -156,7 +157,7 @@ const Modal = ({ isVisible, Close, ...props }) => {
                       setCornerRadius(event.target.value);
                     }}
                     type="number"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-52 p-1.5"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block lg:w-52 md:w-52 sm:w-full p-1.5"
                   />
                 </div>
                 <div className="flex flex-col">
@@ -170,11 +171,11 @@ const Modal = ({ isVisible, Close, ...props }) => {
                     }}
                     defaultValue={3}
                     type="number"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-52 p-1.5"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block lg:w-52 md:w-52 sm:w-full p-1.5"
                   />
                 </div>
               </div>
-              <div className="flex flex-row justify-between">
+              <div className="flex lg:flex-row md:flex-row sm:flex-col justify-between">
                 <div className="flex flex-col">
                   <label htmlFor="" className="font-semibold pb-1">
                     Arrow width
@@ -186,7 +187,7 @@ const Modal = ({ isVisible, Close, ...props }) => {
                     }}
                     defaultValue={3}
                     type="number"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-52 p-1.5"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block lg:w-52 md:w-52 sm:w-full p-1.5"
                   />
                 </div>
                 <div className="flex flex-col">
@@ -200,7 +201,7 @@ const Modal = ({ isVisible, Close, ...props }) => {
                     }}
                     defaultValue={3}
                     type="number"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-52 p-1.5"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block lg:w-52 md:w-52 sm:w-full p-1.5"
                   />
                 </div>
               </div>
