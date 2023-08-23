@@ -6,7 +6,7 @@ export default function Home(props) {
   const [showModal, setShowModal] = useState(false);
   const [selectedButton, setSelectedButton] = useState("");
   const [receivedData, setReceivedData] = useState(null);
-
+  const [toggled, setToggled] = useState(true);
   //USING USEREF TO STORE THE PREVIOUS STATE OF THE TOOLTIP UPON CHANGING THE STATE OF ANOTHER BUTTON IF THER IS NO USEREF HERE ON CHANGING ANOTHER BUTTONS STATE IT WILL REVERT ALL THE OTHER BUTTONS TO DEFAULT STATE
 
   const prevButtonData = useRef({
@@ -37,6 +37,7 @@ export default function Home(props) {
           <div className="flex flex-row justify-between ">
             {/* START OF 1ST BUTTON */}
             <TooltipItem
+              toggleValue={toggled}
               tooltipWidth={
                 receivedData && receivedData.targetElement === "Button1"
                   ? parseInt(receivedData.tooltipWidth)
@@ -94,6 +95,7 @@ export default function Home(props) {
                 onClick={() => {
                   setShowModal(true);
                   setSelectedButton("Button1");
+                  setToggled(false);
                 }}
               >
                 Button 1
@@ -103,6 +105,7 @@ export default function Home(props) {
             {/* END OF 1ST BUTTON */}
 
             <TooltipItem
+              toggleValue={toggled}
               tooltipWidth={
                 receivedData && receivedData.targetElement === "Button2"
                   ? parseInt(receivedData.tooltipWidth)
@@ -160,6 +163,7 @@ export default function Home(props) {
                 onClick={() => {
                   setShowModal(true);
                   setSelectedButton("Button2");
+                  setToggled(false);
                 }}
               >
                 Button 2
@@ -168,6 +172,7 @@ export default function Home(props) {
           </div>{" "}
           <div className="flex flex-row justify-center">
             <TooltipItem
+              toggleValue={toggled}
               tooltipWidth={
                 receivedData && receivedData.targetElement === "Button3"
                   ? parseInt(receivedData.tooltipWidth)
@@ -225,6 +230,7 @@ export default function Home(props) {
                 onClick={() => {
                   setShowModal(true);
                   setSelectedButton("Button3");
+                  setToggled(false);
                 }}
               >
                 Button 3
@@ -233,6 +239,7 @@ export default function Home(props) {
           </div>{" "}
           <div className="flex flex-row justify-between ">
             <TooltipItem
+              toggleValue={toggled}
               tooltipWidth={
                 receivedData && receivedData.targetElement === "Button4"
                   ? parseInt(receivedData.tooltipWidth)
@@ -290,12 +297,14 @@ export default function Home(props) {
                 onClick={() => {
                   setShowModal(true);
                   setSelectedButton("Button4");
+                  setToggled(false);
                 }}
               >
                 Button 4
               </button>
             </TooltipItem>
             <TooltipItem
+              toggleValue={toggled}
               tooltipWidth={
                 receivedData && receivedData.targetElement === "Button5"
                   ? parseInt(receivedData.tooltipWidth)
@@ -352,6 +361,7 @@ export default function Home(props) {
                 className="bg-white text-black rounded-md p-2 font-semibold w-36"
                 onClick={() => {
                   setShowModal(true);
+                  setToggled(false);
                   setSelectedButton("Button5");
                 }}
               >
@@ -367,6 +377,7 @@ export default function Home(props) {
         selectedButton={selectedButton}
         Close={() => {
           setShowModal(false);
+          setToggled(true);
         }}
         onSubmit={getData}
       />
