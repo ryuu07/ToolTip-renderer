@@ -14,7 +14,7 @@ export const TooltipItem = ({
   tooltipWidth,
   // arrowWidth,
   // arrowHeight,
-  toggledValue,
+  showTooltip,
   textSize,
   padding,
 }) => {
@@ -40,9 +40,9 @@ export const TooltipItem = ({
     cornerRadius,
     tooltipWidth,
   ]);
-  console.log(toggledValue);
+  // console.log(toggledValue);
 
-  if (toggledValue) return null;
+  if (!showTooltip) return null;
   return (
     <React.Fragment>
       <div className="">

@@ -7,6 +7,7 @@ export default function Home(props) {
   const [selectedButton, setSelectedButton] = useState("");
   const [receivedData, setReceivedData] = useState(null);
   const [textLength, setTextLength] = useState(0);
+  const [showTooltip, setShowTooltip] = useState(true);
   const defaultText = "Tooltip text goes here";
 
   useEffect(() => {
@@ -43,47 +44,48 @@ export default function Home(props) {
           <div className="flex flex-row justify-between ">
             {/* START OF 1ST BUTTON */}
             <TooltipItem
+            showTooltip={showTooltip}
               tooltipWidth={
                 receivedData && receivedData.targetElement === "Button1"
                   ? parseInt(receivedData.tooltipWidth)
                   : prevButtonData.current["Button1"]
                   ? parseInt(prevButtonData.current["Button1"].tooltipWidth)
-                  : textLength
+                  : 0
               }
               cornerRadius={
                 receivedData && receivedData.targetElement === "Button1"
                   ? parseInt(receivedData.cornerRadius)
                   : prevButtonData.current["Button1"]
                   ? parseInt(prevButtonData.current["Button1"].cornerRadius)
-                  : 4
+                  : 0
               }
               textSize={
                 receivedData && receivedData.targetElement === "Button1"
                   ? parseInt(receivedData.textSize)
                   : prevButtonData.current["Button1"]
                   ? parseInt(prevButtonData.current["Button1"].textSize)
-                  : 10 //DEFAULT VALUE
+                  : 0 //DEFAULT VALUE
               }
               padding={
                 receivedData && receivedData.targetElement === "Button1"
                   ? parseInt(receivedData.padding)
                   : prevButtonData.current["Button1"]
                   ? parseInt(prevButtonData.current["Button1"].padding)
-                  : 8 //DEFAULT VALUE
+                  : 0 //DEFAULT VALUE
               }
               textColour={
                 receivedData && receivedData.targetElement === "Button1"
                   ? receivedData.textColour
                   : prevButtonData.current["Button1"]
                   ? prevButtonData.current["Button1"].textColour
-                  : "white" //DEFAULT VALUE
+                  : "" //DEFAULT VALUE
               }
               backgroundColour={
                 receivedData && receivedData.targetElement === "Button1"
                   ? receivedData.backgroundColour
                   : prevButtonData.current["Button1"]
                   ? prevButtonData.current["Button1"].backgroundColour
-                  : "black" //DEFAULT VALUE
+                  : "" //DEFAULT VALUE
               }
               position="right"
               tooltipsText={
@@ -98,9 +100,9 @@ export default function Home(props) {
               <button
                 className="bg-white text-black rounded-md p-2 font-semibold w-36"
                 onClick={() => {
+                  setShowTooltip(false)
                   setShowModal(true);
                   setSelectedButton("Button1");
-                  setToggled(false);
                 }}
               >
                 Button 1
@@ -110,40 +112,41 @@ export default function Home(props) {
             {/* END OF 1ST BUTTON */}
 
             <TooltipItem
+            showTooltip={showTooltip}
               tooltipWidth={
                 receivedData && receivedData.targetElement === "Button2"
                   ? parseInt(receivedData.tooltipWidth)
                   : prevButtonData.current["Button2"]
                   ? parseInt(prevButtonData.current["Button2"].tooltipWidth)
-                  : textLength
+                  : 0
               }
               cornerRadius={
                 receivedData && receivedData.targetElement === "Button2"
                   ? parseInt(receivedData.cornerRadius)
                   : prevButtonData.current["Button2"]
                   ? parseInt(prevButtonData.current["Button2"].cornerRadius)
-                  : 4
+                  : 0
               }
               textSize={
                 receivedData && receivedData.targetElement === "Button2"
                   ? parseInt(receivedData.textSize)
                   : prevButtonData.current["Button2"]
                   ? parseInt(prevButtonData.current["Button2"].textSize)
-                  : 10
+                  : 0
               }
               padding={
                 receivedData && receivedData.targetElement === "Button2"
                   ? parseInt(receivedData.padding)
                   : prevButtonData.current["Button2"]
                   ? parseInt(prevButtonData.current["Button2"].padding)
-                  : 8 //DEFAULT VALUE
+                  : 0 //DEFAULT VALUE
               }
               textColour={
                 receivedData && receivedData.targetElement === "Button2"
                   ? receivedData.textColour
                   : prevButtonData.current["Button2"]
                   ? prevButtonData.current["Button2"].textColour
-                  : "white"
+                  : ""
               }
               position="left"
               backgroundColour={
@@ -151,7 +154,7 @@ export default function Home(props) {
                   ? receivedData.backgroundColour
                   : prevButtonData.current["Button2"]
                   ? prevButtonData.current["Button2"].backgroundColour
-                  : "black" //DEFAULT VALUE
+                  : "" //DEFAULT VALUE
               }
               tooltipsText={
                 receivedData && receivedData.targetElement === "Button2"
@@ -165,9 +168,9 @@ export default function Home(props) {
               <button
                 className="bg-white text-black rounded-md p-2 font-semibold w-36"
                 onClick={() => {
+                  setShowTooltip(false)
                   setShowModal(true);
                   setSelectedButton("Button2");
-                  setToggled(false);
                 }}
               >
                 Button 2
@@ -176,40 +179,41 @@ export default function Home(props) {
           </div>{" "}
           <div className="flex flex-row justify-center">
             <TooltipItem
+            showTooltip={showTooltip}
               tooltipWidth={
                 receivedData && receivedData.targetElement === "Button3"
                   ? parseInt(receivedData.tooltipWidth)
                   : prevButtonData.current["Button3"]
                   ? parseInt(prevButtonData.current["Button3"].tooltipWidth)
-                  : textLength
+                  : 0
               }
               cornerRadius={
                 receivedData && receivedData.targetElement === "Button3"
                   ? parseInt(receivedData.cornerRadius)
                   : prevButtonData.current["Button3"]
                   ? parseInt(prevButtonData.current["Button3"].cornerRadius)
-                  : 4
+                  : 0
               }
               textSize={
                 receivedData && receivedData.targetElement === "Button3"
                   ? parseInt(receivedData.textSize)
                   : prevButtonData.current["Button3"]
                   ? parseInt(prevButtonData.current["Button3"].textSize)
-                  : 10
+                  : 0
               }
               padding={
                 receivedData && receivedData.targetElement === "Button3"
                   ? parseInt(receivedData.padding)
                   : prevButtonData.current["Button3"]
                   ? parseInt(prevButtonData.current["Button3"].padding)
-                  : 8 //DEFAULT VALUE
+                  : 0 //DEFAULT VALUE
               }
               textColour={
                 receivedData && receivedData.targetElement === "Button3"
                   ? receivedData.textColour
                   : prevButtonData.current["Button3"]
                   ? prevButtonData.current["Button3"].textColour
-                  : "white"
+                  : ""
               }
               position="bottom"
               backgroundColour={
@@ -217,7 +221,7 @@ export default function Home(props) {
                   ? receivedData.backgroundColour
                   : prevButtonData.current["Button3"]
                   ? prevButtonData.current["Button3"].backgroundColour
-                  : "black" //DEFAULT VALUE
+                  : "" //DEFAULT VALUE
               }
               tooltipsText={
                 receivedData && receivedData.targetElement === "Button3"
@@ -231,9 +235,9 @@ export default function Home(props) {
               <button
                 className="bg-white text-black rounded-md p-2 font-semibold w-36"
                 onClick={() => {
+                  setShowTooltip(false)
                   setShowModal(true);
                   setSelectedButton("Button3");
-                  setToggled(false);
                 }}
               >
                 Button 3
@@ -242,40 +246,41 @@ export default function Home(props) {
           </div>{" "}
           <div className="flex flex-row justify-between ">
             <TooltipItem
+            showTooltip={showTooltip}
               tooltipWidth={
                 receivedData && receivedData.targetElement === "Button4"
                   ? parseInt(receivedData.tooltipWidth)
                   : prevButtonData.current["Button4"]
                   ? parseInt(prevButtonData.current["Button4"].tooltipWidth)
-                  : textLength
+                  : 0
               }
               cornerRadius={
                 receivedData && receivedData.targetElement === "Button4"
                   ? parseInt(receivedData.cornerRadius)
                   : prevButtonData.current["Button4"]
                   ? parseInt(prevButtonData.current["Button4"].cornerRadius)
-                  : 4
+                  : 0
               }
               textSize={
                 receivedData && receivedData.targetElement === "Button4"
                   ? parseInt(receivedData.textSize)
                   : prevButtonData.current["Button4"]
                   ? parseInt(prevButtonData.current["Button4"].textSize)
-                  : 10
+                  : 0
               }
               padding={
                 receivedData && receivedData.targetElement === "Button4"
                   ? parseInt(receivedData.padding)
                   : prevButtonData.current["Button4"]
                   ? parseInt(prevButtonData.current["Button4"].padding)
-                  : 8 //DEFAULT VALUE
+                  : 0 //DEFAULT VALUE
               }
               textColour={
                 receivedData && receivedData.targetElement === "Button4"
                   ? receivedData.textColour
                   : prevButtonData.current["Button4"]
                   ? prevButtonData.current["Button4"].textColour
-                  : "white"
+                  : ""
               }
               position="top"
               backgroundColour={
@@ -283,7 +288,7 @@ export default function Home(props) {
                   ? receivedData.backgroundColour
                   : prevButtonData.current["Button4"]
                   ? prevButtonData.current["Button4"].backgroundColour
-                  : "black" //DEFAULT VALUE
+                  : "" //DEFAULT VALUE
               }
               tooltipsText={
                 receivedData && receivedData.targetElement === "Button4"
@@ -297,49 +302,50 @@ export default function Home(props) {
               <button
                 className="bg-white text-black rounded-md p-2 font-semibold w-36"
                 onClick={() => {
+                  setShowTooltip(false)
                   setShowModal(true);
                   setSelectedButton("Button4");
-                  setToggled(false);
                 }}
               >
                 Button 4
               </button>
             </TooltipItem>
             <TooltipItem
+            showTooltip={showTooltip}
               tooltipWidth={
                 receivedData && receivedData.targetElement === "Button5"
                   ? parseInt(receivedData.tooltipWidth)
                   : prevButtonData.current["Button5"]
                   ? parseInt(prevButtonData.current["Button5"].tooltipWidth)
-                  : textLength
+                  : 0
               }
               cornerRadius={
                 receivedData && receivedData.targetElement === "Button5"
                   ? parseInt(receivedData.cornerRadius)
                   : prevButtonData.current["Button5"]
                   ? parseInt(prevButtonData.current["Button5"].cornerRadius)
-                  : 4
+                  : 0
               }
               textSize={
                 receivedData && receivedData.targetElement === "Button5"
                   ? parseInt(receivedData.textSize)
                   : prevButtonData.current["Button5"]
                   ? parseInt(prevButtonData.current["Button5"].textSize)
-                  : 10
+                  : 0
               }
               padding={
                 receivedData && receivedData.targetElement === "Button5"
                   ? parseInt(receivedData.padding)
                   : prevButtonData.current["Button5"]
                   ? parseInt(prevButtonData.current["Button5"].padding)
-                  : 8 //DEFAULT VALUE
+                  : 0 //DEFAULT VALUE
               }
               textColour={
                 receivedData && receivedData.targetElement === "Button5"
                   ? receivedData.textColour
                   : prevButtonData.current["Button5"]
                   ? prevButtonData.current["Button5"].textColour
-                  : "white"
+                  : ""
               }
               position="top"
               backgroundColour={
@@ -347,7 +353,7 @@ export default function Home(props) {
                   ? receivedData.backgroundColour
                   : prevButtonData.current["Button5"]
                   ? prevButtonData.current["Button5"].backgroundColour
-                  : "black" //DEFAULT VALUE
+                  : "" //DEFAULT VALUE
               }
               tooltipsText={
                 receivedData && receivedData.targetElement === "Button5"
@@ -362,7 +368,7 @@ export default function Home(props) {
                 className="bg-white text-black rounded-md p-2 font-semibold w-36"
                 onClick={() => {
                   setShowModal(true);
-                  setToggled(false);
+                  setShowTooltip(false);
                   setSelectedButton("Button5");
                 }}
               >
@@ -378,6 +384,7 @@ export default function Home(props) {
         selectedButton={selectedButton}
         Close={() => {
           setShowModal(false);
+          setShowTooltip(true);
         }}
         onSubmit={getData}
       />
